@@ -5,6 +5,7 @@ query{
     posts{
       data{
         title
+        body
         user{
           name
         }
