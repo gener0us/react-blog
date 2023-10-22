@@ -5,6 +5,16 @@ query{
     posts{
       data{
         title
+        user{
+          name
+        }
+        id
+        comments{
+          data{
+           id
+          }
+        }
+      
       }
     }
   }

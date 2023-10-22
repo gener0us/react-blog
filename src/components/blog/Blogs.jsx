@@ -6,8 +6,8 @@ const Blogs = () => {
     const {loading,data,errors} = useQuery(GET_BLOGS_INTO)
   return (
     <div>
-        {data.posts.data.map((post) => (
-            <h1>{post.title}</h1>
+      {data && data.posts && data.posts.data.map((post) => (
+            <h1 >{post.title}</h1>
 
         ))}
     </div>
