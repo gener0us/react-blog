@@ -1,4 +1,3 @@
-import React from "react";
 import HomePage from "./components/Home/HomePage";
 import Blogs from "./components/blog/Blogs";
 import BlogPage from "./components/blog/BlogPage";
