@@ -1,8 +1,8 @@
 const Header = () => {
   return (
     <header>
-      <h1>
-        test
+      <h1 className="text-lg">
+        Header
       </h1>
     </header>
   )

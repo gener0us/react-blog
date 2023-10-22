@@ -6,7 +6,7 @@ const Blogs = () => {
     const {data} = useQuery(GET_BLOGS_INTO)
 
   return (
-    <div>
+    <div className='flex flex-wrap gap-4'>
       {data && data.posts && data.posts.data.map((post) => (
           <CardEl key={post.id} {...post} />
       ))}
