@@ -1,18 +1,23 @@
 import { useQuery } from "@apollo/client"
-// import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { GET_BLOG_INTO } from "../../graphql/queries"
 
 const BlogPage = () => {
+  const { id } = useParams();
+  const { data, loading, error } = useQuery(GET_BLOG_INTO, {
+    variables: { id },
+  });
 
-  // const { id } = useParams()
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-  const { data } = useQuery(GET_BLOG_INTO)
-
-  console.log(data)
+  console.log(data);
 
   return (
-    <div>BlogPage</div>
+    <div>
+      <h1>{data.post.title}</h1>
+    </div>
   )
 }
 
-export default BlogPage
+export default BlogPage;

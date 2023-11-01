@@ -22,8 +22,8 @@ const GET_BLOGS_INTO = gql`
 `;
 
 const GET_BLOG_INTO = gql`
-  query getPost($id: String!) {
-    post(where: { id: $id }) {
+  query getPost($id: ID!) {
+    post( id: $id ) {
       title
     }
   }
