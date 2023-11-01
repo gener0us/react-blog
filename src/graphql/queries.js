@@ -1,7 +1,8 @@
 
-import { gql } from "@apollo/client";
+import { gql } from "@apollo/client"
+
 const GET_BLOGS_INTO = gql`
-query{
+  query{
     posts{
       data{
         title
@@ -15,10 +16,17 @@ query{
            id
           }
         }
-      
       }
     }
   }
-  `;
+`;
 
-  export default GET_BLOGS_INTO
+const GET_BLOG_INTO = gql`
+  query getPost($id: String!) {
+    post(where: { id: $id }) {
+      title
+    }
+  }
+`;
+
+export {GET_BLOGS_INTO, GET_BLOG_INTO}
