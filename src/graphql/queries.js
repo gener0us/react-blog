@@ -22,7 +22,7 @@ const GET_BLOGS_INTO = gql`
 `;
 
 const GET_BLOG_INTO = gql`
-  query getPost($id: ID!) {
+  query getPostSingle($id: ID!) {
     post( id: $id ) {
       title
     }
