@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .btn-primary {
+        @apply text-white bg-purple-700 hover:bg-purple-800 text-base focus:ring-purple-300 focus:right-4 focus:outline-none font-semibold px-5 py-2.5 text-center rounded-lg w-full;
+    }
+
+    .input-style {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5
+    }
+}
