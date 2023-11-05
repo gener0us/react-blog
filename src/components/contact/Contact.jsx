@@ -1,12 +1,18 @@
 import { useState } from "react"
+import { v4 } from "uuid"
+
+import ContactList from "./ContactList"
+import inputs from "../../constants/inputs"
 
 const Contact = () => {
-
+  const [contacts, setContacts] = useState([])
+  const [alert, setAlert] = useState("")
   const [contact, setContact] = useState({
     name: '',
     lastname: '',
     email: '',
-    phone: ''
+    phone: '',
+    id: ''
   })
 
   const changeHandler = (event) => {
@@ -16,8 +22,37 @@ const Contact = () => {
     setContact((contact) => ({...contact, [name]: value}))
   }
 
-  const AddHandler = () => {
-    console.log(contact)
+  const AddHandler = (e) => {
+    e.preventDefault()
+
+    if (
+        !contact.email || 
+        !contact.lastname || 
+        !contact.name || 
+        !contact.phone
+    ) {
+      setAlert("please enter valid data !!")
+      return
+
+    }
+
+    setAlert("")
+    const newContact = {...contact, id: v4()}
+    setContacts((contacts) => ([...contacts, newContact]))
+    setContact({
+      name: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      id: ''
+    })
+
+    console.log(contact, contacts)
+  }
+
+  const deleteHandler = (id) => {
+    const newContacts = contacts.filter((contact) => contact.id !== id)
+    setContacts(newContacts)
   }
 
   return (
@@ -28,69 +63,34 @@ const Contact = () => {
       </div>
       <form className="p-5 bg-white shadow-xl shadow-purple-300 mt-10 rounded-xl">
         <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label 
-              htmlFor="first_name" 
-              className="block mb-2 text-sm font-medium text-gray-900">
-                name
-            </label>
-            <input 
-              type="text" 
-              id="first_name" 
-              className="input-style" 
-              placeholder="name"
-              name="name"
-              onChange={changeHandler}
-              value={contact.name} />
+          {
+            inputs.map((input, index) => (
+              <div key={index}>
+                <label htmlFor={input.id} 
+                  className="block mb-2 text-sm font-medium text-gray-900">
+                    {input.name}
+                </label>
+                <input
+                  id={input.id}
+                  className="input-style" 
+                  type={input.type}
+                  name={input.name}
+                  placeholder={input.placeholder}
+                  onChange={changeHandler}
+                  value={contact[input.name]}
+                />
+              </div>
+            ))
+          }
           </div>
           <div>
-            <label 
-              htmlFor="last_name" 
-              className="block mb-2 text-sm font-medium text-gray-900"> 
-              last name
-            </label>
-            <input 
-              type="text" 
-              id="last_name" 
-              className="input-style" 
-              placeholder="lastname" 
-              name="lastname"
-              onChange={changeHandler}
-              value={contact.lastname} />
-          </div>
-          <div>
-            <label 
-              htmlFor="email" 
-              className="block mb-2 text-sm font-medium text-gray-900">
-                email
-            </label>
-            <input 
-              type="email" 
-              id="email" 
-              className="input-style" 
-              placeholder="email"
-              name="email"
-              onChange={changeHandler}
-              value={contact.email} />
-          </div>
-          <div>
-            <label 
-              htmlFor="phome" 
-              className="block mb-2 text-sm font-medium text-gray-900"> 
-              phone number 
-            </label>
-            <input 
-              type="text" 
-              id="phome" 
-              className="input-style" 
-              placeholder="phone number" 
-              name="phone"
-              onChange={changeHandler}
-              value={contact.phone} />
-          </div> 
         </div>
-        <button onClick={AddHandler} type="submit" className="btn-primary mt-5">Add User</button>      
+        <button onClick={AddHandler} className="btn-primary mt-5">Add User</button>      
       </form>
+      <div>
+        {alert && <p className="mt-8 p-4 bg-red-200 text-red-800 rounded-lg">{alert}</p>}
+      </div>
+      <ContactList contacts={contacts} deleteHandler={deleteHandler} />
     </div>
   )
 }
