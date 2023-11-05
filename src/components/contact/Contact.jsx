@@ -1,7 +1,8 @@
 import { useState } from "react"
+import ContactList from "./ContactList"
 
 const Contact = () => {
-
+  const [contacts, setContacts] = useState([])
   const [contact, setContact] = useState({
     name: '',
     lastname: '',
@@ -17,7 +18,8 @@ const Contact = () => {
   }
 
   const AddHandler = () => {
-    console.log(contact)
+    setContacts((contacts) => ([...contacts, contact]))
+    console.log(contacts)
   }
 
   return (
@@ -91,6 +93,7 @@ const Contact = () => {
         </div>
         <button onClick={AddHandler} type="submit" className="btn-primary mt-5">Add User</button>      
       </form>
+      <ContactList contacts={contacts} />
     </div>
   )
 }
