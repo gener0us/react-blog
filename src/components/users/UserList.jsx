@@ -1,22 +1,22 @@
 import PropTypes from "prop-types"
-import ContactItem from "./ContactItem"
+import UserItem from "./UserItem"
 
-const ContactList = ({ contacts, deleteHandler }) => {
-  console.log(contacts);
+const userList = ({ users, deleteHandler }) => {
+  console.log(users);
   return (
     <div className="py-14">
-      <h3 className="font-black text-2xl text-purple-800">ContactsList</h3>
+      <h3 className="font-black text-2xl text-purple-800">usersList</h3>
       <ul className="p-5 mt-7 bg-white shadow-lg rounded-lg">
-        {contacts.length ? (
-          contacts.map((contact) => (
-            <ContactItem 
+        {users.length ? (
+          users.map((contact) => (
+            <UserItem 
               key={contact.id} 
               data={contact} 
               deleteHandler={deleteHandler} />
           ))
         ) : (
           <p className="text-center font-bold text-gray-700 bg-gray-100 p-3 rounded-lg mb-3 last:mb-0">
-            No Contacts Yet
+            No users Yet
           </p>
         )}
       </ul>
@@ -24,9 +24,9 @@ const ContactList = ({ contacts, deleteHandler }) => {
   );
 };
 
-export default ContactList;
+export default userList;
 
-ContactList.propTypes = {
+userList.propTypes = {
   contacts: PropTypes.array,
   deleteHandler: PropTypes.func
 };

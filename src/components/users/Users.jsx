@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { v4 } from "uuid"
 
-import ContactList from "./ContactList"
+import UserList from "./UserList"
 import inputs from "../../constants/inputs"
 
-const Contact = () => {
-  const [contacts, setContacts] = useState([])
+const Users = () => {
+  const [users, setusers] = useState([])
   const [alert, setAlert] = useState("")
-  const [contact, setContact] = useState({
+  const [user, setuser] = useState({
     name: '',
     lastname: '',
     email: '',
@@ -19,17 +19,17 @@ const Contact = () => {
     const name = event.target.name
     const value = event.target.value 
 
-    setContact((contact) => ({...contact, [name]: value}))
+    setuser((user) => ({...user, [name]: value}))
   }
 
   const AddHandler = (e) => {
     e.preventDefault()
 
     if (
-        !contact.email || 
-        !contact.lastname || 
-        !contact.name || 
-        !contact.phone
+        !user.email || 
+        !user.lastname || 
+        !user.name || 
+        !user.phone
     ) {
       setAlert("please enter valid data !!")
       return
@@ -37,9 +37,9 @@ const Contact = () => {
     }
 
     setAlert("")
-    const newContact = {...contact, id: v4()}
-    setContacts((contacts) => ([...contacts, newContact]))
-    setContact({
+    const newuser = {...user, id: v4()}
+    setusers((users) => ([...users, newuser]))
+    setuser({
       name: '',
       lastname: '',
       email: '',
@@ -47,18 +47,18 @@ const Contact = () => {
       id: ''
     })
 
-    console.log(contact, contacts)
+    console.log(user, users)
   }
 
   const deleteHandler = (id) => {
-    const newContacts = contacts.filter((contact) => contact.id !== id)
-    setContacts(newContacts)
+    const newusers = users.filter((user) => user.id !== id)
+    setusers(newusers)
   }
 
   return (
     <div className="container">
       <div className="text-center">
-        <h1 className="font-black text-4xl pt-12 pb-2 text-purple-800"> Contact App </h1>
+        <h1 className="font-black text-4xl pt-12 pb-2 text-purple-800"> user App </h1>
         <p className="font-semibold text-lg text-purple-900"> Lorem ipsum | React js Full Course </p>
       </div>
       <form className="p-5 bg-white shadow-xl shadow-purple-300 mt-10 rounded-xl">
@@ -77,7 +77,7 @@ const Contact = () => {
                   name={input.name}
                   placeholder={input.placeholder}
                   onChange={changeHandler}
-                  value={contact[input.name]}
+                  value={user[input.name]}
                 />
               </div>
             ))
@@ -90,9 +90,9 @@ const Contact = () => {
       <div>
         {alert && <p className="mt-8 p-4 bg-red-200 text-red-800 rounded-lg">{alert}</p>}
       </div>
-      <ContactList contacts={contacts} deleteHandler={deleteHandler} />
+      <UserList users={users} deleteHandler={deleteHandler} />
     </div>
   )
 }
 
-export default Contact
+export default Users

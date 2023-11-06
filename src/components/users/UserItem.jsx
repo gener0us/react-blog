@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 
-const ContactItem = ({ data: { name, lastname, email, phone, id }, deleteHandler }) => {
+const UserItem = ({ data: { name, lastname, email, phone, id }, deleteHandler }) => {
   return (
     <li className="flex justify-between items-center bg-gray-100 p-3 rounded-lg mb-3 last:mb-0">
       <p>
@@ -22,9 +22,9 @@ const ContactItem = ({ data: { name, lastname, email, phone, id }, deleteHandler
   );
 };
 
-export default ContactItem;
+export default UserItem;
 
-ContactItem.propTypes = {
+UserItem.propTypes = {
   data: PropTypes.object,
   deleteHandler: PropTypes.func
 };
