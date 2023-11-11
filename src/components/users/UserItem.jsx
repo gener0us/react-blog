@@ -1,10 +1,11 @@
 import PropTypes from "prop-types"
 
-const UserItem = ({ data: { name, lastname, email, phone, id }, deleteHandler }) => {
+const UserItem = ({ name, email, phone, deleteHandler, id }) => {
+
   return (
     <li className="flex justify-between items-center bg-gray-100 p-3 rounded-lg mb-3 last:mb-0">
       <p>
-        {name} {lastname}
+        {name}
       </p>
       <p>{email}</p>
       <p>{phone}</p>
@@ -25,6 +26,9 @@ const UserItem = ({ data: { name, lastname, email, phone, id }, deleteHandler })
 export default UserItem;
 
 UserItem.propTypes = {
-  data: PropTypes.object,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  id: PropTypes.string,
   deleteHandler: PropTypes.func
 };

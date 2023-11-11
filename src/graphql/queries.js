@@ -21,6 +21,20 @@ const GET_BLOGS_INTO = gql`
   }
 `;
 
+const GET_USERS_INTO = gql`
+  query{
+    users{
+      data{
+        name
+        username
+        id
+        email
+        phone
+      }
+    }
+  }
+`;
+
 const GET_BLOG_INTO = gql`
   query getPostSingle($id: ID!) {
     post( id: $id ) {
@@ -29,4 +43,4 @@ const GET_BLOG_INTO = gql`
   }
 `;
 
-export {GET_BLOGS_INTO, GET_BLOG_INTO}
+export {GET_BLOGS_INTO, GET_BLOG_INTO, GET_USERS_INTO}
