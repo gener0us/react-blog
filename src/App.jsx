@@ -4,6 +4,7 @@ import BlogPage from "./components/blog/BlogPage";
 import Users from "./components/users/Users";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/users" element={<Users />}></Route>
           <Route path="/" element={<HomePage />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

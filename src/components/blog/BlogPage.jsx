@@ -12,8 +12,18 @@ const BlogPage = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
-      <h1>{data.post.title}</h1>
+    <div className="container py-14">
+      <h1 className="font-black text-4xl pb-2 text-gray-900 mb-5">
+        {data.post.title}
+      </h1>
+      <p className="font-medium text-base">{data.post.body}</p>
+      <div className="comments">
+        {data.post &&
+          data.post.comments &&
+          data.post.comments.data.map((comment) => {
+            <h1>{comment.name}</h1>
+          })}
+      </div>
     </div>
   );
 };
