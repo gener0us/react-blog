@@ -18,8 +18,8 @@ const Blogs = () => {
           data.posts &&
           data.posts.data
             .map((post) => <CardEl key={post.id} {...post} />)}
+        </div>
       </div>
-    </div>
   );
 };
 
